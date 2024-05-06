@@ -9,13 +9,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <AuthProvider>
-      <html lang="en">
-        <body className="bg-grey-100">
+    <html lang="en">
+      <body className="bg-grey-100">
+        <AuthProvider>
           <Nav />
           <div className="m-2">{children}</div>
-        </body>
-      </html>
-    </AuthProvider>
+        </AuthProvider>
+      </body>
+    </html>
   );
 }

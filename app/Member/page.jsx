@@ -2,10 +2,13 @@ import { getServerSession } from "next-auth";
 import { options } from "../api/auth/[...nextauth]/options";
 import { redirect } from "next/navigation";
 
-const Member = async () => {
-  const session = await getServerSession(options);
+async function getUser() {
+  const session = await getServerSession();
+  return session;
+}
 
-  console.log(session, "session");
+const Member = async () => {
+  const session = await getUser();
 
   // if (!session) {
   //   redirect("/api/auth/signin?callbackUrl=/Member");
@@ -13,9 +16,10 @@ const Member = async () => {
   return (
     <div>
       <h1>Member server Session</h1>
-      <p>{session?.user?.email}</p>
+      {JSON.stringify(session)}
+      {/* <p>{session?.user?.email}</p>
       <p>{session?.user?.role}</p>
-      <h1>{JSON?.stringify(session)}</h1>
+      <h1>{JSON?.stringify(session)}</h1> */}
     </div>
   );
 };
